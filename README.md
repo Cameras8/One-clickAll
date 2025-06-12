@@ -6,7 +6,9 @@
 
 基于YOLOv11的高精度GPS井盖风险识别系统，实现WGS84坐标精确获取（≤20米精度）和在线Excel数据管理。专为城市基础设施安全监测而设计。
 
-[系统截图]![54324721e6002907642e1bec63b9d11](https://github.com/user-attachments/assets/406a8028-eae4-47a5-8dce-3494b5ee364b)
+[系统截图]
+<img src="![54324721e6002907642e1bec63b9d11](https://github.com/user-attachments/assets/64426992-5410-41f7-abc4-346f9dbef5f5)
+" width="210px">
 
 
 ## 🚀 核心功能
