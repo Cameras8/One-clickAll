@@ -1,4 +1,4 @@
-# 高精度GPS井盖风险识别系统
+# 一键获取坐标（≤20m）+一键填入表格+一键打备注的便捷调研网页
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://github.com/Cameras8/high-gps)
