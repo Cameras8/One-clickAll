@@ -3,13 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://github.com/Cameras8/high-gps)
 [![YOLOv11](https://img.shields.io/badge/YOLOv11-Powered-blue)](https://github.com/ultralytics/ultralytics)
-
 基于YOLOv11的高精度GPS井盖风险识别系统，实现WGS84坐标精确获取（≤20米精度）和在线Excel数据管理。专为城市基础设施安全监测而设计。
-
-[系统截图]
-<img src="![54324721e6002907642e1bec63b9d11](https://github.com/user-attachments/assets/64426992-5410-41f7-abc4-346f9dbef5f5)
-" width="210px">
-
+[系统截图(自适应客户端与移动端）]
+![image](https://github.com/user-attachments/assets/4aff3778-018a-45c2-979c-79eac23eeef8)
 
 ## 🚀 核心功能
 
@@ -30,12 +26,8 @@
 - **在线Excel表格**：实时创建和编辑数据表格
 - **数据持久化**：本地存储和云端同步
 - **多格式导出**：支持Excel(.csv)和JSON格式
-- **数据导入导出**：完整的数据迁移功能
+- **数据导入导出**：完整的数据迁移功能，数据存储在浏览器的LocalStore里，不丢失
 - **批量操作**：支持批量数据处理
-
-## 🌐 在线演示
-
-访问 [GitHub Pages 演示](https://github.com/Cameras8/high-gps) 体验完整功能
 
 ## 🛠️ 技术栈
 
@@ -166,7 +158,7 @@ HIgh-GPS/
 
 ## 👥 开发团队
 
-**CLZJ团队** - 专注于城市基础设施智能监测
+**CLZ团队** - 专注于城市基础设施智能监测
 
 - 项目主页: [clzh.tech](https://clzh.tech)
 - GitHub: [Cameras8](https://github.com/Cameras8)
