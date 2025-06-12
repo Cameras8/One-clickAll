@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>超高精度（<=20m）GPS位置获取 CLZ组</title>
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="github-link">
+            <a href="https://github.com/Cameras8/high-gps/tree/master" target="_blank">
+                <img src="images/github-mark.svg" alt="GitHub">
+                <span>Source Code</span>
+            </a>
+            <span class="divider">|</span>
+            <a href="https://clzh.tech" target="_blank">clzh.tech</a>
+        </div>
+    </div>
+    
+    <div class="scroll-buttons">
+        <button id="scrollToTop" class="scroll-button"><i class="fas fa-arrow-up"></i> 顶部</button>
+        <button id="scrollToBottom" class="scroll-button"><i class="fas fa-arrow-down"></i> 底部</button>
+    </div>
+    
+    <!-- 快速操作浮动按钮 -->
+    <div class="fab-container">
+        <div class="fab-button" id="fabMain">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="fab-options">
+            <div class="fab-option" id="fabGetLocation" title="获取位置">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="fab-option" id="fabAddToTable" title="添加到表格">
+                <i class="fas fa-table"></i>
+            </div>
+            <div class="fab-option" id="fabExportData" title="导出数据">
+                <i class="fas fa-file-export"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-layout">
+        <div class="gps-container">
+            <h1>高精度GPS位置获取</h1>
+            <p>点击下方按钮获取和复制您当前的精确地理位置坐标</p>
+            <div class="button-container">
+                <button id="getLocation">获取精确位置</button>
+                <button id="stopLocation" style="display: none; background-color: #f44336;">停止定位</button>
+            </div>
+            <div class="button-container">
+                <button id="addToTable" disabled>添加到表格</button>
+            </div>
+            <div id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div id="progressBar" class="progress-value"></div>
+                </div>
+                <p id="progressText">正在提高定位精度...</p>
+            </div>
+            <div id="result">尚未获取位置信息</div>
+            <div id="copyMessage" class="success-message">坐标已复制到剪贴板</div>
+        </div>
+        
+        <div class="table-container">
+            <h2>坐标记录表</h2>
+            <div class="table-controls">
+                <button id="exportExcel" class="table-button">导出Excel</button>
+            </div>
+            <div class="data-controls">
+                <button id="saveData" class="data-button">保存数据</button>
+                <button id="loadData" class="data-button">加载数据</button>
+                <button id="exportData" class="data-button">导出数据文件</button>
+                <input type="file" id="importDataFile" accept=".json" style="display:none;">
+                <button id="importData" class="data-button">导入数据文件</button>
+            </div>
+            <div class="excel-table-wrapper">
+                <table id="coordsTable" class="excel-table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>经度</th>
+                            <th>纬度</th>
+                            <th>精度(米)</th>
+                            <th>时间</th>
+                            <th>井盖状态</th>
+                            <th>流量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coordsTableBody">
+                        <!-- 表格内容将通过JavaScript动态添加 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    
+    <!-- 保存数据模态框 -->
+    <div id="saveDataModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>保存当前数据</h3>
+            <div class="modal-form">
+                <label for="saveDataName">数据集名称：</label>
+                <input type="text" id="saveDataName" placeholder="请输入一个便于识别的名称">
+                <div class="modal-buttons">
+                    <button id="confirmSave" class="modal-button">保存</button>
+                    <button id="cancelSave" class="modal-button cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 加载数据模态框 -->
+    <div id="loadDataModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>选择要加载的数据</h3>
+            <div id="savedDataList" class="saved-data-list">
+                <!-- 已保存的数据列表将通过JavaScript动态添加 -->
+            </div>
+            <div class="modal-note">提示：点击数据集名称加载，点击删除按钮可删除数据集</div>
+        </div>
+    </div>
+    
+    <!-- 井盖状态和流量输入模态框 -->
+    <div id="manholeCoverModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>请输入井盖状态和流量</h3>
+            <div class="current-number">当前编号: <span id="currentRowNumber">-</span></div>
+            <div class="modal-form">
+                <label for="manholeCoverStatus">井盖状态：</label>
+                <select id="manholeCoverStatus">
+                    <option value="完好">完好</option>
+                    <option value="破损">破损</option>
+                    <option value="井盖丢失">井盖丢失</option>
+                    <option value="井盖开启">井盖开启</option>
+                    <option value="井圈问题">井圈问题</option>
+                    <option value="凹陷">凹陷</option>
+                </select>
+                
+                <label for="statusLevel">严重程度(1-10)：</label>
+                <select id="statusLevel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                
+                <label for="flowRate">流量：</label>
+                <select id="flowRate">
+                    <option value="小">小</option>
+                    <option value="中" selected>中</option>
+                    <option value="大">大</option>
+                </select>
+                
+                <div class="modal-buttons">
+                    <button id="confirmManholeCover" class="modal-button">确认添加</button>
+                    <button id="cancelManholeCover" class="modal-button cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

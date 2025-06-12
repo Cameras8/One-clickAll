@@ -1,0 +1,954 @@
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    position: relative;
+    font-size: 16px;
+}
+
+.navbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    width: auto;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 6px 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e4e8;
+    transition: all 0.2s ease;
+    max-width: 200px;
+}
+
+.github-link:hover {
+    background-color: #f6f8fa;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.github-link img {
+    height: 20px;
+    margin-right: 6px;
+}
+
+.github-link a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.github-link a:hover {
+    color: #0366d6;
+}
+
+.github-link .divider {
+    margin: 0 6px;
+    color: #ccc;
+}
+
+.scroll-buttons {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 3px;
+    z-index: 100;
+    transform: scale(0.65);
+    transform-origin: top right;
+}
+
+.scroll-button {
+    background-color: rgba(82, 0, 99, 0.8);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+}
+
+.scroll-button:hover {
+    background-color: rgba(82, 0, 99, 1);
+}
+
+/* 主布局 - 默认为垂直方向（手机优先） */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 95%;
+    max-width: 1400px;
+    padding: 15px 10px;
+    margin-top: 40px;
+}
+
+.gps-container {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.table-container {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* 表格样式 */
+.excel-table-wrapper {
+    overflow-x: auto;
+    margin-top: 15px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d0d0d0;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+}
+
+.excel-table th {
+    background-color: #f3f3f3;
+    border: 1px solid #d0d0d0;
+    padding: 10px 8px;
+    text-align: center;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.excel-table td {
+    border: 1px solid #d0d0d0;
+    padding: 10px 6px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* 设置特定列的宽度 */
+.excel-table th:nth-child(1), .excel-table td:nth-child(1) {
+    width: 8%;
+}
+
+.excel-table th:nth-child(2), .excel-table td:nth-child(2),
+.excel-table th:nth-child(3), .excel-table td:nth-child(3) {
+    width: 14%;
+}
+
+.excel-table th:nth-child(4), .excel-table td:nth-child(4) {
+    width: 10%;
+}
+
+.excel-table th:nth-child(5), .excel-table td:nth-child(5) {
+    width: 15%;
+}
+
+.excel-table th:nth-child(6), .excel-table td:nth-child(6),
+.excel-table th:nth-child(7), .excel-table td:nth-child(7) {
+    width: 17%;
+}
+
+.excel-table th:nth-child(8), .excel-table td:nth-child(8) {
+    width: 8%;
+}
+
+.excel-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.excel-table tr:hover {
+    background-color: #e9f5ff;
+}
+
+/* 表格按钮样式 */
+.table-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.data-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.table-button {
+    background-color: #4285f4;
+    min-width: 120px;
+    height: 44px;
+    font-size: 16px;
+}
+
+.table-button:hover {
+    background-color: #3367d6;
+}
+
+.data-button {
+    background-color: #34a853;
+    min-width: 90px;
+    font-size: 14px;
+    padding: 10px 12px;
+    height: 44px;
+}
+
+.data-button:hover {
+    background-color: #2d8d48;
+}
+
+#saveData {
+    background-color: #4285f4;
+}
+
+#saveData:hover {
+    background-color: #3367d6;
+}
+
+#loadData {
+    background-color: #fbbc05;
+}
+
+#loadData:hover {
+    background-color: #e8ac04;
+}
+
+#exportData {
+    background-color: #34a853;
+}
+
+#exportData:hover {
+    background-color: #2d8d48;
+}
+
+#importData {
+    background-color: #ea4335;
+}
+
+#importData:hover {
+    background-color: #d33426;
+}
+
+#clearTable {
+    background-color: #ea4335;
+}
+
+#clearTable:hover {
+    background-color: #d33426;
+}
+
+#exportExcel {
+    background-color: #0f9d58;
+}
+
+#exportExcel:hover {
+    background-color: #0b8043;
+}
+
+.delete-row {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    min-height: 36px;
+    min-width: 40px;
+}
+
+.delete-row:hover {
+    background-color: #d33426;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button-container:first-of-type {
+    margin-top: 15px;
+}
+
+.button-container + .button-container {
+    margin-top: 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    min-width: 120px;
+    min-height: 44px;
+    margin: 0;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #45a049;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.copy-button {
+    background-color: #2196F3;
+}
+
+.copy-button:hover {
+    background-color: #0b7dda;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-left: 4px solid #4CAF50;
+}
+
+.coordinates {
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.error {
+    color: #f44336;
+    border-left: 4px solid #f44336;
+}
+
+.warning {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #4CAF50;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.success-message {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 16px;
+}
+
+.show {
+    opacity: 1;
+}
+
+.coordinate-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.coordinate-label {
+    font-weight: bold;
+}
+
+.format-title {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    font-size: 17px;
+}
+
+.copy-buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#accuracyIndicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.accuracy-high {
+    background-color: #4CAF50;
+}
+
+.accuracy-medium {
+    background-color: #FFC107;
+}
+
+.accuracy-low {
+    background-color: #F44336;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    margin: 10px 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-value {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0;
+    transition: width 0.3s;
+}
+
+/* 表格可编辑单元格样式 */
+.editable-cell {
+    width: 95%;
+    padding: 10px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border 0.2s;
+    min-height: 40px;
+    resize: vertical;
+    max-height: 120px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    -webkit-appearance: none;
+}
+
+.editable-cell:focus {
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.editable-cell::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.delete-row {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    min-height: 36px;
+    min-width: 40px;
+}
+
+.delete-row:hover {
+    background-color: #d33426;
+}
+
+/* 模态对话框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+}
+
+.close-modal:hover {
+    color: #555;
+}
+
+.modal-form {
+    margin-top: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.modal-form input,
+.modal-form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border 0.2s;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    height: 46px;
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #4285f4;
+    color: white;
+    transition: background-color 0.2s;
+    min-height: 44px;
+}
+
+.modal-button:hover {
+    background-color: #3367d6;
+}
+
+.modal-button.cancel {
+    background-color: #9e9e9e;
+}
+
+.modal-button.cancel:hover {
+    background-color: #7e7e7e;
+}
+
+.saved-data-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 15px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.saved-data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.saved-data-item:last-child {
+    border-bottom: none;
+}
+
+.saved-data-item:hover {
+    background-color: #f5f5f5;
+}
+
+.saved-data-info {
+    flex: 1;
+    padding: 5px 0;
+}
+
+.saved-data-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.saved-data-meta {
+    font-size: 13px;
+    color: #666;
+}
+
+.saved-data-delete {
+    color: #ea4335;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 5px 10px;
+}
+
+.saved-data-delete:hover {
+    color: #d33426;
+}
+
+.modal-note {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.no-data-message {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* 响应式设计 - 大屏幕使用水平布局 */
+@media (min-width: 901px) {
+    .main-layout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .gps-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+    }
+    
+    .table-container {
+        flex: 2;
+        min-width: 600px;
+    }
+}
+
+/* 小屏幕设备的特殊处理 */
+@media (max-width: 900px) {
+    body {
+        font-size: 15px;
+    }
+    
+    .main-layout {
+        padding: 10px 5px;
+        margin-top: 50px;
+        width: 98%;
+    }
+    
+    .gps-container, 
+    .table-container {
+        padding: 12px;
+    }
+    
+    .copy-buttons-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: auto;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    .github-link {
+        font-size: 12px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e1e4e8;
+        max-width: 180px;
+    }
+    
+    .github-link img {
+        height: 16px;
+    }
+    
+    .scroll-buttons {
+        position: fixed;
+        transform: scale(0.65);
+    }
+    
+    .scroll-button {
+        padding: 3px 6px;
+        font-size: 14px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 15% auto;
+    }
+    
+    /* 在移动设备上显示浮动按钮 */
+    .fab-container {
+        display: block;
+    }
+}
+
+/* 超小屏幕设备的特殊处理 */
+@media (max-width: 480px) {
+    .excel-table {
+        font-size: 13px;
+    }
+    
+    .table-button,
+    .data-button {
+        min-width: 45%;
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+    
+    /* 在手机上隐藏较不重要的列 */
+    .excel-table th:nth-child(3), 
+    .excel-table td:nth-child(3),
+    .excel-table th:nth-child(4), 
+    .excel-table td:nth-child(4),
+    .excel-table th:nth-child(5), 
+    .excel-table td:nth-child(5) {
+        display: none;
+    }
+    
+    /* 自动调整重要列的宽度 */
+    .excel-table th:nth-child(1), 
+    .excel-table td:nth-child(1) {
+        width: 15%;
+    }
+    
+    .excel-table th:nth-child(2), 
+    .excel-table td:nth-child(2) {
+        width: 20%;
+    }
+    
+    .excel-table th:nth-child(6), 
+    .excel-table td:nth-child(6),
+    .excel-table th:nth-child(7), 
+    .excel-table td:nth-child(7) {
+        width: 25%;
+    }
+    
+    .excel-table th:nth-child(8), 
+    .excel-table td:nth-child(8) {
+        width: 15%;
+    }
+    
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    /* 调整表格控制按钮 */
+    .table-controls,
+    .data-controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    /* 减小模态框的内边距 */
+    .modal-content {
+        padding: 15px;
+    }
+    
+    /* 增大关闭按钮的点击区域 */
+    .close-modal {
+        font-size: 28px;
+        padding: 8px;
+    }
+}
+
+/* 修复iOS点击延迟 */
+* {
+    touch-action: manipulation;
+}
+
+/* 浮动操作按钮(FAB) */
+.fab-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    display: none; /* 默认在桌面端不显示 */
+}
+
+.fab-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1001;
+}
+
+.fab-button:active {
+    transform: scale(0.95);
+}
+
+.fab-options {
+    position: absolute;
+    bottom: 70px;
+    right: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.fab-option {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4285f4;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fab-option:active {
+    transform: scale(0.9);
+}
+
+/* 显示浮动按钮的提示文本 */
+.fab-option::after {
+    content: attr(title);
+    position: absolute;
+    right: 55px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.fab-option:hover::after {
+    opacity: 1;
+}
+
+/* 当前编号样式 */
+.current-number {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    color: #520063;
+    font-size: 16px;
+}
+
+#currentRowNumber {
+    color: #e74c3c;
+    font-size: 18px;
+} 
