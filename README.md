@@ -1,8 +1,10 @@
-# 一键获取坐标（≤20m）+一键填入表格+一键打备注的便捷调研网页
+# 一键获取坐标+一键填入表格+一键打备注
+超级便捷的调研工具，实现两小时记录500个Poi点位不是梦
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://github.com/Cameras8/high-gps)
 [![YOLOv11](https://img.shields.io/badge/YOLOv11-Powered-blue)](https://github.com/ultralytics/ultralytics)
+
 基于YOLOv11的高精度GPS井盖风险识别系统，实现WGS84坐标精确获取（≤20米精度）和在线Excel数据管理。专为城市基础设施安全监测而设计。
 [系统截图(自适应客户端与移动端）]
 ![image](https://github.com/user-attachments/assets/4aff3778-018a-45c2-979c-79eac23eeef8)
